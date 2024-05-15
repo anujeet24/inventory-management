@@ -67,7 +67,7 @@ import java.util.ArrayList;
     }
 
     public void displayProducts() {
-        System.out.println("Product is in inventory:");
+        System.out.println("Product present in inventory:");
         for (Product product : products)
         {
             System.out.println("ID:" + product.getId() + ", Name: " + product.getName() + ", Quantity: " + product.getQuantity() + ", Cost Price: " + product.getCp() + ", MRP: " + product.getMrp() + ", Sale Price: " + product.getSp()) ;
@@ -82,8 +82,9 @@ import java.util.ArrayList;
                 System.out.println("Quantity is updated for product :" + product.getName());
                 return;
             }
+            System.out.println("Product not found. ");
         }
-        System.out.println("Product not found. ");
+        
         }
 
     public void sale(int productId, int saleQuantity ){
@@ -91,9 +92,29 @@ import java.util.ArrayList;
             if(product.getId()==productId) {
                 product.setQuantity(product.getQuantity()- saleQuantity);
             System.out.println("The sale quantity has been updated in Actual stock for " +  product.getName());
+            
+            
+            System.out.println("The profit for the sale was ="+ (product.getSp()-product.getCp())*saleQuantity + "Rs.");
+            System.out.println();
+            System.out.println("##########---##########");
+            System.out.println("You saved Rs :" + (product.getMrp()- product.getCp()));
+            System.out.println("The cost of the the Purchase = " + product.getSp()*saleQuantity +"Rs.");
+            System.out.println("##########---##########");
+            return;
             }
-
             System.out.println("Product not found. ");
+
+        }
+    }
+
+    public void addProductQuantity(int productId, int newProductQuantity){
+        for (Product product : products) {
+            if (product.getId()==productId){
+                product.setQuantity(product.getQuantity() + newProductQuantity);
+                System.out.println("The product quantity has been added");
+                return;
+            }
+            System.out.println("Product not found");
         }
     }
 
@@ -115,6 +136,7 @@ class stocks{
         Product product1 = new Product(1, "SherwaniRed", 10,5000, 20000,15000);
         Product product2 = new Product(2, "Kurti", 5 ,500, 1500, 1000);
         Product product3 = new Product(3,"white_Shirt",20,500,2000,1500);
+        
         inventorySystem.addProduct(product1);
 
         inventorySystem.addProduct(product2);
@@ -122,13 +144,12 @@ class stocks{
         inventorySystem.displayProducts();
 
         System.out.println("Press 1 : If you want to add a product: ");
-        System.out.println("Press 2 : If you want to delete a product: ");
-        System.out.println("Press 3 : If you want to sale a product: ");
-        System.out.println("Press 4 : If you want to update product quantity: ");
+        System.out.println("Press 2 : If you want to sale a product: ");
+        System.out.println("Press 3 : If you want to update product quantity: ");
         System.out.print("Enter your option :");
         int flag = sc.nextInt();
 
-        if(flag==3){
+        if(flag==2){
             System.out.println("Enter the product Code: ");
             int productId = sc.nextInt();
             System.out.println("Enter the sale quantity: ");
@@ -136,8 +157,8 @@ class stocks{
             inventorySystem.sale(productId,saleQuantity);
         }
         
-        if(flag ==4){
-        System.out.println("enterb the Product Id to update quantity:  ");
+        if(flag ==3){
+        System.out.println("enter the Product Id to update quantity:  ");
         
         int productId = sc.nextInt();
         System.out.println("Enter the new Quantity: ");
@@ -145,8 +166,16 @@ class stocks{
 
         inventorySystem.updateProductQuantity(productId, newQuantity);
         }
+
+        if(flag == 1) {
+            System.out.println("Enter the product id you want to add");
+            int productId = sc.nextInt();
+            System.out.println("Enter the value you want to add to the Quantity: ");
+            int addQuantity = sc.nextInt();
+            inventorySystem.addProductQuantity(productId, addQuantity);
+        }
         inventorySystem.displayProducts();
-        System.out.println("Delete it  sample ttesting");
+        
 
     }
 
