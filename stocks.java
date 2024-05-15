@@ -146,8 +146,9 @@ class stocks{
         inventorySystem.updateProductQuantity(productId, newQuantity);
         }
         inventorySystem.displayProducts();
+        System.out.println("Delete it  sample ttesting");
 
     }
-    
+
 
 }
