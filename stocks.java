@@ -1,6 +1,8 @@
 import java.util.*;
 import java.util.List;
 import java.util.ArrayList;
+import java.text.SimpleDateFormat;  
+import java.util.Date; 
 
 
 //class stocks {
@@ -118,6 +120,23 @@ import java.util.ArrayList;
         }
     }
 
+    public void bill(String Name,String Phone_Number){
+        System.out.println();
+        System.out.println("0x0x0x0x0x0x0x0x0x0x0x0x0x0x0x");
+        System.out.println();
+        System.out.println("         Mehi Garments        ");
+        System.out.println("       Star Mall 2 floor      ");
+        System.out.println("      Kolkata, West Bengal    ");
+        System.out.println();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
+    Date date = new Date();  
+        System.out.print(" Date : ");
+    System.out.println(formatter.format(date));  
+        System.out.println();
+        System.out.println(" Name : " + Name);
+        System.out.println(" Mobile : " + Phone_Number);
+    }
+
     
 
     }
@@ -175,6 +194,7 @@ class stocks{
             inventorySystem.addProductQuantity(productId, addQuantity);
         }
         inventorySystem.displayProducts();
+        inventorySystem.bill("Anujeet " , "762418273629" );
         
 
     }
