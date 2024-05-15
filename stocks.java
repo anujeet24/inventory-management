@@ -96,6 +96,9 @@ import java.util.ArrayList;
             System.out.println("Product not found. ");
         }
     }
+
+    
+
     }
 
 
@@ -109,10 +112,6 @@ class stocks{
         
         inventoryMangementSystem inventorySystem = new inventoryMangementSystem();
         Scanner sc = new Scanner(System.in);
-        System.out.println("Press 1 : If you want to add a product: ");
-        System.out.println("Press 2 : If you want to delete a product: ");
-        System.out.println("Press 3 : If you want to sale a product: ");
-
         Product product1 = new Product(1, "SherwaniRed", 10,5000, 20000,15000);
         Product product2 = new Product(2, "Kurti", 5 ,500, 1500, 1000);
         Product product3 = new Product(3,"white_Shirt",20,500,2000,1500);
@@ -122,6 +121,22 @@ class stocks{
         inventorySystem.addProduct(product3);
         inventorySystem.displayProducts();
 
+        System.out.println("Press 1 : If you want to add a product: ");
+        System.out.println("Press 2 : If you want to delete a product: ");
+        System.out.println("Press 3 : If you want to sale a product: ");
+        System.out.println("Press 4 : If you want to update product quantity: ");
+        System.out.print("Enter your option :");
+        int flag = sc.nextInt();
+
+        if(flag==3){
+            System.out.println("Enter the product Code: ");
+            int productId = sc.nextInt();
+            System.out.println("Enter the sale quantity: ");
+            int saleQuantity = sc.nextInt();
+            inventorySystem.sale(productId,saleQuantity);
+        }
+        
+        if(flag ==4){
         System.out.println("enterb the Product Id to update quantity:  ");
         
         int productId = sc.nextInt();
@@ -129,7 +144,7 @@ class stocks{
         int newQuantity = sc.nextInt();
 
         inventorySystem.updateProductQuantity(productId, newQuantity);
-
+        }
         inventorySystem.displayProducts();
 
     }
