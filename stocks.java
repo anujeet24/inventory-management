@@ -89,7 +89,7 @@ import java.util.Date;
         
         }
 
-    public void sale(int productId, int saleQuantity ){
+    public void sale(int productId, int saleQuantity,String Name, String Phone_Number ){
         for(Product product : products) {
             if(product.getId()==productId) {
                 product.setQuantity(product.getQuantity()- saleQuantity);
@@ -99,9 +99,16 @@ import java.util.Date;
             System.out.println("The profit for the sale was ="+ (product.getSp()-product.getCp())*saleQuantity + "Rs.");
             System.out.println();
             System.out.println("##########---##########");
-            System.out.println("You saved Rs :" + (product.getMrp()- product.getCp()));
-            System.out.println("The cost of the the Purchase = " + product.getSp()*saleQuantity +"Rs.");
-            System.out.println("##########---##########");
+            bill(Name, Phone_Number);
+            System.out.println("Item Name      Quantity         Rate          Amt    " );
+            System.out.println(product.getName()+"      "+saleQuantity + "              "+product.getSp()+"         "+product.getSp()*saleQuantity);
+            System.out.println("--------------------------------------------------------------------------");
+            System.out.println("                PAY RS: " + product.getSp()*saleQuantity +"/-");
+            System.out.println("                You saved Rs :" + (product.getMrp()- product.getCp()));
+            System.out.println("             ##########---##########            ");
+            System.out.println();
+            System.out.println();
+            
             return;
             }
             System.out.println("Product not found. ");
@@ -114,6 +121,7 @@ import java.util.Date;
             if (product.getId()==productId){
                 product.setQuantity(product.getQuantity() + newProductQuantity);
                 System.out.println("The product quantity has been added");
+                
                 return;
             }
             System.out.println("Product not found");
@@ -168,12 +176,17 @@ class stocks{
         System.out.print("Enter your option :");
         int flag = sc.nextInt();
 
+// Sale of product 
         if(flag==2){
+            System.out.println("Enter customer name : ");
+            String Name = sc.next();
+            System.out.println("Enter the customer phone number: ");
+            String Phone_Number = sc.next();
             System.out.println("Enter the product Code: ");
             int productId = sc.nextInt();
             System.out.println("Enter the sale quantity: ");
             int saleQuantity = sc.nextInt();
-            inventorySystem.sale(productId,saleQuantity);
+            inventorySystem.sale(productId,saleQuantity,Name, Phone_Number);
         }
         
         if(flag ==3){
@@ -194,7 +207,7 @@ class stocks{
             inventorySystem.addProductQuantity(productId, addQuantity);
         }
         inventorySystem.displayProducts();
-        inventorySystem.bill("Anujeet " , "762418273629" );
+        
         
 
     }
